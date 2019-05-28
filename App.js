@@ -1,43 +1,31 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { SafeAreaView } from 'react-navigation'
 
+import { createStackNavigator, createAppContainer, } from 'react-navigation'
 
-import Seasons from './components/Seasons/index'
+import HomeScreen from './screens/home'
+import DetailsScreen from './screens/details'
 
-export default class App extends React.Component {
-
-  async fetchFrom(year) {
-    try {
-      const f1Api = await fetch(`http://ergast.com/api/f1/${year}.json`);
-      const response = await f1Api.json();
-      console.log(`Houve ${response.MRData.RaceTable.Races.length} corridas em ${year}!`)
-    } catch (err) {
-      console.log("Deu ruim", err);
+const AppNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Details: {
+      screen: DetailsScreen,
     }
-  }
-
-  getData(season) {
-    console.log(season)
-  }
-
-  render() {
-    return (
-      <SafeAreaView style={styles.container}>
-        <Seasons handleClick={this.fetchFrom} />
-      </SafeAreaView>
-
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-});
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#333',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
+  }
+)
 
-
+export default createAppContainer(AppNavigator)

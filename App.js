@@ -3,6 +3,7 @@ import React from 'react'
 import { createStackNavigator, createAppContainer, } from 'react-navigation'
 
 import HomeScreen from './screens/home'
+import InfoScreen from './screens/seasonInfo'
 import DetailsScreen from './screens/details'
 
 const AppNavigator = createStackNavigator(
@@ -12,6 +13,9 @@ const AppNavigator = createStackNavigator(
     },
     Details: {
       screen: DetailsScreen,
+    },
+    Info: {
+      screen: InfoScreen,
     }
   },
   {

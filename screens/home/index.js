@@ -1,7 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import { SafeAreaView, ScrollView } from 'react-navigation'
-
 
 import Seasons from '../../components/Seasons'
 
@@ -20,31 +18,21 @@ export default class Home extends React.Component {
     }
 
     redirectTo(year) {
-        this.props.navigation.navigate('Details', {
+        this.props.navigation.navigate('Info', {
             year: year,
         })
     }
 
     render() {
         return (
-            <SafeAreaView style={styles.container}>
+            <SafeAreaView>
                 <ScrollView>
                     <Seasons handleClick={this.redirectTo} />
                 </ScrollView>
-
             </SafeAreaView>
-
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 

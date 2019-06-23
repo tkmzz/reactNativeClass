@@ -1,55 +1,44 @@
 import React from 'react'
-import { Text, Title, ListItem, Button, List } from 'native-base'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+
+import CustomBtn from '../../components/CustomBtn/index'
 
 export default class Info extends React.Component {
 
     state = {
-        year: 'oi',
-    }
-
-    constructor(props) {
-        super(props)
-
-        //this.redirectTo = this.redirectTo.bind(this)
+        year: null,
     }
 
     componentDidMount() {
-        this.setState({ year: 'year' })
+        this.setState({ year: this.props.navigation.getParam('year') })
     }
 
     static navigationOptions = (props) => {
-        console.log(props)
         return {
-            title: `${props.navigation.state.params.year} Season Info`,
+            title: `${props.navigation.state.params.year} Season Menu`,
         }
+    }
+
+    redirectTo = title => {
+        this.props.navigation.navigate(title, {
+            year: this.state.year,
+        })
     }
 
     render() {
         return (
-            <View>
-                <Title style={{ marginTop: 40 }}>Choose the info you want to know</Title>
-
-
-                <Button style={{ width: '80%', height: 100, margin: '10%', justifyContent: 'center', alignItems: 'center' }}>
-
-                    <Text style={{}}>gffdfgdfsgf</Text>
-
-
-                </Button>
-
-
-
-                <Button style={{ width: '80%', height: 100, margin: '10%', justifyContent: 'center', alignItems: 'center' }}>
-
-                    <Text style={{}}>gffdfgdfsgf</Text>
-
-
-                </Button>
-
-
+            <View style={styles.container}>
+                <CustomBtn title={'Races'} redirectTo={this.redirectTo} />
+                <CustomBtn title={'Drivers'} redirectTo={this.redirectTo} />
             </View>
         );
 
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+})

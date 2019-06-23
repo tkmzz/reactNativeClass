@@ -13,9 +13,9 @@ class Seasons extends PureComponent {
         let items = []
 
         for (let i = 0; i < 20; i++) {
-            const year = '20' + (i > 9 ? i : `0${i}`)
+            const season = '20' + (i > 9 ? i : `0${i}`)
             items.push(
-                year
+                season
             )
         }
         this.setState({ items: items })
